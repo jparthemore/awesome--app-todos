@@ -25,7 +25,7 @@ const TodoApp = {
     //const list - this.todos.map(function(todo,index){});
     //console.log(lis);
     const lis = this.todos
-                    .map(todo=>'<li>'+todo.task+ '</li>')
+                    .map(todo=>`<li>${todo.task}</li>`)
                     .join();
     this.todoList.innerHTML = lis;
     }
