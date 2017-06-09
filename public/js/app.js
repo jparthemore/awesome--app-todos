@@ -42,14 +42,29 @@ const TodoApp = {
     //5 - clear input
     this.taskInput.value = '';
   },
+  cacheDeleteButtons: function(){
+    this.deleteButtons = this.root.querySelectorAll('.delete');
+    //console.dir(this.deleteButtons);
+  },
+  bindDeleteEvents: function(){
+    this.deleteButtons.forEach((button,index)=>{
+      button.addEventListener('click',()=>this.deleteTodo(index));
+    });
+  },
+  deleteTodo: function(index){
+    this.todos.splice(index,1);
+    this.render();
+  },
   render: function(){
     //const lis = this.todos.map(todo=>todo.task);
     //const list - this.todos.map(function(todo,index){});
     //console.log(lis);
     const lis = this.todos
-                    .map(todo=>`<li>${todo.task}</li>`)
+                    .map(todo=>`<li>${todo.task}<button class='delete'>X</button></li>`)
                     .join('');
     this.todoList.innerHTML = lis;//be careful can lead to security vulnerabilities
+    this.cacheDeleteButtons();
+    this.bindDeleteEvents();
     }
 
 };
