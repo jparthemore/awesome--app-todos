@@ -10,14 +10,19 @@ const TodoApp = {
   },
   cacheDOM: function(){
     this.root = document.querySelector(this.rootElement);
-    this.addButton = this.root.querySelector('.add-button');
+    //this.addButton = this.root.querySelector('.add-button');
+    this.createForm = this.root.querySelector('.create-form');
     this.taskInput = this.root.querySelector('.task-input');
     this.todoList = this.root.querySelector('.todo-list');
    },
   bindEvents: function(){
-    this.addButton.addEventListener('click',()=>this.addTodo());//dont need curly braces for one inline liner
+    //this is so passe
+    //this.addButton.addEventListener('click',()=>this.addTodo());//dont need curly braces for one inline liner
+    this.createForm.addEventListener('submit',(event)=>this.addTodo(event));
   },
-  addTodo: function(){
+  addTodo: function(event){
+    //console.log(event);
+    event.preventDefault();
     //first grab task input value
     const taskValue = this.taskInput.value;
     //1b - validate that taskValue is actually'something'
